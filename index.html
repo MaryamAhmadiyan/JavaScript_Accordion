@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
+        integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2D2C41;
+        }
+
+        .header {
+            width: 100%;
+            height: 60px;
+            /*  border: 2px solid black; */
+            margin: 100px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .ul {
+            width: 500px;
+            height: min-content;
+            background-color: white;
+            margin: 100px auto;
+            overflow: hidden;
+            
+            
+
+            >.li {
+                width: 100%;
+                padding: 6px;
+                background-color: white;
+                list-style-type: none;
+                font-size: 20px;
+                border-bottom: 2px solid black;
+             >ul{
+                >li{
+                       &:nth-of-type(2){
+                    border-top: 1px solid gray;
+                    border-bottom: 1px solid gray;
+                }
+                }
+             }
+
+                >h2 {
+                    font-size: 30px;
+                    cursor: pointer;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                    text-transform: capitalize;
+                    color: rgb(43, 40, 40);
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    >span{
+                        >i{
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+
+            li {
+                list-style-type: none;
+               /* border-bottom: 1px solid gray; */
+                text-transform: capitalize;
+            }
+
+
+        }
+        .rot{
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="header">Smooth Accordion Dropdown Menu Demo</h2>
+    <ul class="ul">
+        <li class="li">
+            <h2> web design <span><i class="ri-arrow-down-wide-line"></i></span></h2>
+            <ul>
+                <li>photoshop</li>
+                <li>html</li>
+                <li>css</li>
+            </ul>
+        </li>
+        <li class="li">
+            <h2>coding <span><i class="ri-arrow-down-wide-line"></i></span></h2>
+            <ul>
+                <li>java script</li>
+                <li>jQuery</li>
+                <li>Rouby</li>
+            </ul>
+        </li>
+        <li class="li">
+            <h2>devices <span><i class="ri-arrow-down-wide-line"></i></span></h2>
+            <ul>
+                <li>tablet</li>
+                <li>mobile</li>
+                <li>desktop</li>
+            </ul>
+        </li>
+        <li class="li">
+            <h2>global <span><i class="ri-arrow-down-wide-line"></i></span></h2>
+            <ul>
+                <li>google</li>
+                <li>bing</li>
+                <li>yahoo</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+<script>
+    const h2 = document.querySelectorAll('.ul>.li>h2')
+    const ul = document.querySelectorAll('.ul>.li>ul')
+
+
+    ul.forEach(function (val) {
+       // toggle height //
+        val.setAttribute('data-h',val.clientHeight)
+        val.style.height='0'
+        // toggle height //
+        val.style.display = 'none'
+        val.setAttribute('data-status', 'off')
+    })
+
+
+    // li.forEach(function(val){
+    //     val.setAttribute('data-status','off')
+    // })
+    h2.forEach(function (item) {
+        let ul = item.nextElementSibling;
+        let icon = item.querySelector('span i')
+
+        item.addEventListener('click', function () {
+           
+            if (ul.getAttribute('data-status') == 'off') {
+
+                 let height = item.nextElementSibling.getAttribute('data-h')
+                 item.nextElementSibling.style.height = height + 'px'
+                ul.style.display = 'block'
+                ul.setAttribute('data-status', 'on')
+               icon.classList.add('rot')
+                
+
+
+            } else {
+                item.nextElementSibling.style.height = '0px'
+
+                ul.style.display = 'none'
+                ul.setAttribute('data-status', 'off')
+                icon.classList.remove('rot')
+            }
+
+        })
+    })
+</script>
+
+</html>
